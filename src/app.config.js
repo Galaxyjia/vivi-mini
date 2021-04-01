@@ -3,7 +3,8 @@ export default {
     "pages/index/index",
     "pages/all/all",
     "pages/my/my",
-    "pages/block/block"
+    "pages/block/block",
+    "pages/detail/detail"
   ],
 
   window: {

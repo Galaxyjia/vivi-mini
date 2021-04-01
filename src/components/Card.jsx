@@ -1,9 +1,14 @@
 import React from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 
 export default function Card() {
+  const gotodetails =()=>{
+    Taro.redirectTo({ url: "/pages/detail/detail" });
+  }
+
   return (
-    <View className="h-48 m-2 bg-white rounded-md shadow-xl w-5_12">
+    <View className="h-48 m-2 bg-white rounded-md shadow-xl w-5_12" onClick={gotodetails}>
       <View className="p-1">
         <Image
           className="w-full h-32"

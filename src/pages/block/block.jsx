@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Image, Text, Icon,Button } from "@tarojs/components";
+import { View, Image, Text, Icon,Button,WebView} from "@tarojs/components";
 import SwiperCard from "@components/SwiperCard";
 import {
   useReady,
@@ -134,6 +134,7 @@ function Block() {
       <Button className='bg-green-700'>Button1</Button>
       <Button className='bg-pink-700'>Button2</Button>
       </View>
+      <WebView src='https://b.u.mgd5.com/c/nv2x/tsxu/index.html' onMessage={console.log('vivi')} />
       </View>
   );
 }
