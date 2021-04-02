@@ -3,6 +3,17 @@ import Taro from "@tarojs/taro";
 
 import { View, Text, Button, Image } from "@tarojs/components";
 export default function DetailNav() {
+  const onShareAppMessage= (res)=> { //放在父组件上执行，子组件上不被执行！
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/page/user?id=123'
+    }
+  }
+
   const gotoIndex = () => {
     Taro.redirectTo({ url: "/pages/index/index"});
   };
@@ -26,7 +37,7 @@ export default function DetailNav() {
           Index
         </View>
         <View className="w-full h-full m-1" onClick={gotoShare}>
-          share
+          <Button id="button" openType="share">sshare</Button>
         </View>
         <View className="w-full h-full m-1" onClick={gotoNormal}>
           normal
