@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View ,WebView } from "@tarojs/components";
+import { View ,WebView} from "@tarojs/components";
 import LongCard from "@components/LongCard"
 
 import {
@@ -10,7 +10,7 @@ import {
 } from "@tarojs/taro";
 import DetailNav from "@components/DetailNav"
 
-function Normal() {
+function Plus() {
   // 可以使用所有的 React Hooks
   useEffect(() => {});
 
@@ -34,4 +34,4 @@ function Normal() {
   );
 }
 
-export default Normal;
+export default Plus;

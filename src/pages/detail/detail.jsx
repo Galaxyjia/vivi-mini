@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { View } from "@tarojs/components";
-import LongCard from "@components/LongCard"
+import { View, Image, Text } from "@tarojs/components";
+import LongCard from "@components/LongCard";
 
 import {
   useReady,
@@ -8,7 +8,7 @@ import {
   useDidHide,
   usePullDownRefresh,
 } from "@tarojs/taro";
-import Nav from "@components/Nav"
+import DetailNav from "@components/DetailNav";
 
 function Detail() {
   // 可以使用所有的 React Hooks
@@ -29,15 +29,25 @@ function Detail() {
 
   return (
     <View className="min-h-screen bg-white">
-      <View className="w-full ">
-        <View className="h-20 bg-pink-400 shadow-xl">
-          Detail
+      <View className="w-full">
+        <View className="z-0">
+          <Image
+            className={"w-full h-36 bg-pink-400"}
+            src="https://camo.githubusercontent.com/3e1b76e514b895760055987f164ce6c95935a3aa/687474703a2f2f73746f726167652e333630627579696d672e636f6d2f6d74642f686f6d652f6c6f676f2d3278313531333833373932363730372e706e67"
+          />
         </View>
-        <View className="-mt-6">
-          <View >detail</View>
+
+        <View className="h-20 bg-pink-400 shadow-xl">
+        <Image
+        className={"w-full h-full bg-pink-400"}
+        src="https://camo.githubusercontent.com/3e1b76e514b895760055987f164ce6c95935a3aa/687474703a2f2f73746f726167652e333630627579696d672e636f6d2f6d74642f686f6d652f6c6f676f2d3278313531333833373932363730372e706e67"
+      />
+        </View>
+        <View className="z-50 -mt-6">
+          <View className="p-3 bg-green-700 h-36 rounded-3xl">detail</View>
         </View>
       </View>
-      <Nav />
+      <DetailNav />
     </View>
   );
 }

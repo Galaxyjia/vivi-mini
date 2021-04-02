@@ -4,7 +4,9 @@ export default {
     "pages/all/all",
     "pages/my/my",
     "pages/block/block",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/normal/normal",
+    "pages/plus/plus"
   ],
 
   window: {
