@@ -42,7 +42,7 @@ function My() {
           <LongCard />
         </View>
       </View>
-      <Nav />
+      <Nav index="2"/>
     </View>
   );
 }

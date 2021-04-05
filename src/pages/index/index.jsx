@@ -58,7 +58,7 @@ function Index() {
         </View>
       </View>
 
-      <Nav />
+      <Nav index="0"/>
     </View>
   );
 }

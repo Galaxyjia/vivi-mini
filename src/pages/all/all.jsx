@@ -51,7 +51,7 @@ function All() {
           <Card />
         </View>
       </View>
-      <Nav />
+      <Nav index="1" />
     </View>
   );
 }
