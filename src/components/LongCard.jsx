@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 
 export default function LongCard() {
+
+
   return (
     <View className="flex items-center justify-center p-1 m-2 bg-white shadow-xl h-36">
       <Image
