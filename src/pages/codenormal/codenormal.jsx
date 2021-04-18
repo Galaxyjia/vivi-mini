@@ -10,7 +10,8 @@ import {
 } from "@tarojs/taro";
 import DetailNav from "@components/DetailNav"
 
-function CodeNormal() {
+function CodeNormal(props) {
+  const {url}=props
   // 可以使用所有的 React Hooks
   useEffect(() => {});
 
@@ -29,7 +30,7 @@ function CodeNormal() {
 
   return (
     <View className="min-h-screen bg-white">
-    <WebView src='https://mp.weixin.qq.com/'/>
+    <WebView src={url}/>
     </View>
   );
 }

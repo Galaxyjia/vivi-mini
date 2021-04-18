@@ -50,7 +50,7 @@ function All() {
         <View className="flex flex-wrap w-full mx-auto">
         {
           data&&data.data&&data.data.lists.map((item,index)=>(
-            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} />
+            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover}/>
           ))
         }
         </View>

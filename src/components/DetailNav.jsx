@@ -1,5 +1,6 @@
 import React from "react";
 import Taro from "@tarojs/taro";
+import { useShareAppMessage } from '@tarojs/taro'
 
 import { View, Text, Button, Image } from "@tarojs/components";
 import home_clicked from "@icons/home_clicked.png";
@@ -15,16 +16,21 @@ export default function DetailNav(props) {
   let index = props.index
   console.log(index)
 
-  const onShareAppMessage= (res)=> { //放在父组件上执行，子组件上不被执行！
+  useShareAppMessage(res => {
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
+      // return {
+      //   title: 'Galaxy赠送你电子刊码',
+      //   path: `pages/detail/detail?id=${magazine_id}`,
+      //   imageUrl:'https://camo.githubusercontent.com/3e1b76e514b895760055987f164ce6c95935a3aa/687474703a2f2f73746f726167652e333630627579696d672e636f6d2f6d74642f686f6d652f6c6f676f2d3278313531333833373932363730372e706e67'
+      // }
     }
     return {
       title: '自定义转发标题',
       path: '/page/user?id=123'
     }
-  }
+  })
 
   const gotoIndex = () => {
     Taro.redirectTo({ url: "/pages/index/index"});

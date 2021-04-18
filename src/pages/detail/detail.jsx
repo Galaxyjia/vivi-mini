@@ -72,7 +72,7 @@ function Detail() {
           />
         </View>
         <View className="z-50">
-          <View className="p-3 bg-gray-200 rounded-3xl">
+          <View className="p-3 bg-gray-100 rounded-3xl">
           {
             data&&data.data&&
             <RichText nodes={data.data.content} />

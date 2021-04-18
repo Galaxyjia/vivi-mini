@@ -15,6 +15,7 @@ import Nav from "@components/Nav";
 
 function Index() {
   const [data,setData] = useState()
+  const [datarecommand,setDataRecommand] = useState()
   const [title,setTitle] = useState()
   const [total_subtotal,setTotalSubtotal] = useState()
   // 可以使用所有的 React Hooks
@@ -34,6 +35,22 @@ function Index() {
     })
   },[]);
 
+  useEffect(() => {
+    Taro.request({
+      url:'https://vivimini.havefunentertain.com/api/magazine/lists?page=1&pagesize=5&is_recommend=1&sort=-listorder,-id',
+      header: {
+        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+        "X-Requested-With":"XMLHttpRequest",
+        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
+      },
+      method:"GET"
+      // dataType:'其他'
+    }).then(res=>{
+        console.log("recommand: ",res.data)
+        setDataRecommand(()=>res.data)
+    })
+  },[]);
+
   // 对应 onReady
   useReady(() => {});
 
@@ -49,7 +66,9 @@ function Index() {
 
   return (
     <View className="min-h-screen bg-gray-100">
-      <SwiperCard />
+      {
+        datarecommand&&<SwiperCard datarecommand={datarecommand}/>
+      }
       <View className="flex items-center justify-center mx-auto mt-3 w-1_2">
         <Text>热门期刊</Text>
       </View>
@@ -57,7 +76,7 @@ function Index() {
         <View className="flex flex-wrap w-full mx-auto">
         {
           data&&data.data&&data.data.lists.map((item,index)=>(
-            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} />
+            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover}/>
           ))
         }
         </View>

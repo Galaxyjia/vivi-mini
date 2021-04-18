@@ -13,7 +13,7 @@ export default function Card(props) {
       <View className="p-1">
         <Image
           className="w-full h-32"
-          mode="aspectFill"
+          // mode="aspectFill"
           src={cover}
         />
       </View>
