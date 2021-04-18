@@ -2,7 +2,9 @@ import React from "react";
 import Taro from "@tarojs/taro";
 
 import { View, Text, Button, Image } from "@tarojs/components";
-export default function Rank() {
+export default function Rank(props) {
+  const {title} = props;
+
   const gotodacall =()=>{
     Taro.redirectTo({ url: "/pages/dacall/dacall" });
   }

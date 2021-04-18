@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { View, Image, Text } from "@tarojs/components";
+import React, { useState,useEffect } from "react";
+import { View, Image, Text,RichText} from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import Rank from "@components/Rank";
 
 import {
@@ -11,8 +12,42 @@ import {
 import DetailNav from "@components/DetailNav";
 
 function Detail() {
+  // const {id} = props;
+  const [data,setData]= useState()
+  const [rankdata,setRankData] = useState()
   // 可以使用所有的 React Hooks
-  useEffect(() => {});
+  // 可以使用所有的 React Hooks
+  useEffect(() => {
+    Taro.request({
+      url:`https://vivimini.havefunentertain.com/api/magazine/detail?id=1`,
+      header: {
+        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+        "X-Requested-With":"XMLHttpRequest",
+        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
+      },
+      method:"GET"
+      // dataType:'其他'
+    }).then(res=>{
+        console.log(res.data)
+        setData(()=>res.data)
+    })
+  },[]);
+
+  useEffect(() => {
+    Taro.request({
+      url:`https://vivimini.havefunentertain.com/api/magazine/rank_lists?magazine_id=1&page=1&pagesize=5`,
+      header: {
+        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+        "X-Requested-With":"XMLHttpRequest",
+        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
+      },
+      method:"GET"
+      // dataType:'其他'
+    }).then(res=>{
+        console.log(res.data)
+        setRankData(()=>res.data)
+    })
+  },[]);
 
   // 对应 onReady
   useReady(() => {});
@@ -37,18 +72,23 @@ function Detail() {
           />
         </View>
         <View className="z-50">
-          <View className="p-3 bg-yellow-700 h-36 rounded-3xl">detail</View>
+          <View className="p-3 bg-gray-200 rounded-3xl">
+          {
+            data&&data.data&&
+            <RichText nodes={data.data.content} />
+          }
+          </View>
         </View>
         <View className="flex items-center justify-center h-8">
           <View>订阅排行版</View>
         </View>
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
+        <View>
+        {
+          rankdata&&rankdata.data&&console.log(rankdata.data.lists)&&rankdata.data.lists.map((item,index)=>(
+            <Rank />
+          ))
+        }
+        </View>
       </View>
       <DetailNav />
     </View>

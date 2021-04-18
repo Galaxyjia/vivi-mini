@@ -7,7 +7,10 @@ export default {
     "pages/detail/detail",
     "pages/normal/normal",
     "pages/plus/plus",
-    "pages/dacall/dacall"
+    "pages/dacall/dacall",
+    "pages/code/code",
+    "pages/codenormal/codenormal",
+    "pages/codeplus/codeplus"
   ],
 
   window: {
