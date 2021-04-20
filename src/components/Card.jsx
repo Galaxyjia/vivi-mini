@@ -9,7 +9,7 @@ export default function Card(props) {
   }
 
   return (
-    <View className="h-48 m-2 bg-white rounded-md shadow-xl w-5_12" onClick={gotodetails}>
+    <View className="m-2 bg-white rounded-md shadow-xl h-52 w-5_12" onClick={gotodetails}>
       <View className="p-1">
         <Image
           className="w-full h-32"
@@ -17,10 +17,10 @@ export default function Card(props) {
           src={cover}
         />
       </View>
-      <View className="pl-2">
-        <Text className="text-xs">{title}</Text>
+      <View className="w-full px-1">
+        <Text className="text-xs overflow-ellipsis">{title}</Text>
       </View>
-      <View className="pl-2">
+      <View className="w-full px-1">
         <Text className="text-xs text-gray-300">已订阅{total_subscribe}份</Text>
       </View>
     </View>

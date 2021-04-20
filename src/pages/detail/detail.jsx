@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import { View, Image, Text,RichText} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import Rank from "@components/Rank";
+import Card from "@components/Card";
 
 import {
   useReady,
@@ -66,10 +67,13 @@ function Detail() {
     <View className="min-h-screen bg-white">
       <View className="w-full">
         <View className="z-0">
+        {
+          data&&data.data&&
           <Image
-            className={"w-full h-36 bg-green-400"}
-            src="https://camo.githubusercontent.com/3e1b76e514b895760055987f164ce6c95935a3aa/687474703a2f2f73746f726167652e333630627579696d672e636f6d2f6d74642f686f6d652f6c6f676f2d3278313531333833373932363730372e706e67"
+            className={"w-full h-48"}
+            src={data.data.cover}
           />
+        }
         </View>
         <View className="z-50">
           <View className="p-3 bg-gray-100 rounded-3xl">
@@ -82,10 +86,10 @@ function Detail() {
         <View className="flex items-center justify-center h-8">
           <View>订阅排行版</View>
         </View>
-        <View>
+        <View className="m-2">
         {
-          rankdata&&rankdata.data&&console.log(rankdata.data.lists)&&rankdata.data.lists.map((item,index)=>(
-            <Rank />
+          rankdata&&rankdata.data&&rankdata.data.lists.map((item,index)=>(
+            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers}/>
           ))
         }
         </View>

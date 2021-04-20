@@ -49,8 +49,8 @@ export default function DetailNav(props) {
   };
 
   return (
-    <View className="flex items-center justify-center h-24 mx-auto w-50 opacity-80">
-      <View className="fixed flex items-center justify-center bg-pink-100 rounded-full bottom-3">
+    <View className="h-24 mx-auto w-1_2 opacity-70">
+      <View className="fixed flex items-center justify-center bg-pink-300 rounded-full bottom-3">
         <View className="w-full h-full m-1" onClick={gotoIndex}>
         {
           index ==="0"?<Image src={home_clicked} className="w-10 h-10 rounded-full shadow-xl"/>:<Image src={home_default} className="w-10 h-10 rounded-full"/>

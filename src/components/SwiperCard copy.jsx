@@ -41,7 +41,7 @@ export default function SwiperCard(props) {
               <Image
                 className={
                   swiperIndex == `${index}`
-                  ? "w-full  h-80 p-3"
+                  ? "w-full  h-80 p-3 transform scale-110"
                   : "w-full  h-80 mt-2 p-1"
                 }
                 src={item.cover}

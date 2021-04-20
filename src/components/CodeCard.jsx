@@ -51,7 +51,7 @@ export default function CodeCard(props) {
       复制
       </View>
       <View className="flex flex-row items-center">
-      <Button open-type="share">分享</Button>
+      <Button open-type="share" className="w-10 h-10">分享</Button>
       </View>
     </View>
   );
