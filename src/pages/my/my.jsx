@@ -3,6 +3,7 @@ import { View, Image } from "@tarojs/components";
 import LongCard from "@components/LongCard";
 import Taro from "@tarojs/taro";
 import logo from "@assets/images/vivi.jpg";
+import earphone from "@assets/icons/earphone.png";
 
 import {
   useReady,
@@ -53,6 +54,8 @@ function My() {
     });
   }, []);
 
+
+
   // 对应 onReady
   useReady(() => {});
 
@@ -73,11 +76,21 @@ function My() {
           console.log(res);
           //发起网络请求
           Taro.request({
-            url: "https://vivimini.havefunentertain.com",
+            url: "https://vivimini.havefunentertain.com/api/user/login",
+            header: {
+              "X-Requested-With": "XMLHttpRequest",
+            },
             data: {
               code: res.code,
             },
-          });
+            method: "GET",
+          }).then((result) => {
+            console.log(result);
+            Taro.setStorage({
+              key:"token",
+              data:result
+            })
+          });;
         } else {
           console.log("登录失败！" + res.errMsg);
         }
@@ -100,12 +113,16 @@ function My() {
               {mydata && mydata.data.id}
             </View>
           </View>
-          <View className="ml-8 text-white">客服</View>
+          <View className="mt-2 ml-8 text-white">
+          <Image
+            src={earphone}
+            className="w-6 h-6"
+          />
+          </View>
+
         </View>
         <View className="-mt-6">
-          {data &&
-            data.data &&
-            data.data.lists.map((item, index) => (
+          {data && data.data && data.data.lists.map((item, index) => (
               <LongCard
                 key={index}
                 title={item.title}

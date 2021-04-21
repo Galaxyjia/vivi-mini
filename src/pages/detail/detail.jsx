@@ -3,6 +3,7 @@ import { View, Image, Text,RichText} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import Rank from "@components/Rank";
 import Card from "@components/Card";
+import arrow from "@icons/arrow.png";
 
 import {
   useReady,

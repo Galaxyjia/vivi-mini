@@ -1,12 +1,27 @@
-import React from "react";
+import React,{useState} from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 
 export default function LongCard(props) {
   const {title,total_subscribe,cover} = props;
+  const [isSharePic,setIsSharePic] = useState()
   const gotoCode = () => {
     Taro.redirectTo({ url: "/pages/code/code" });
   };
+
+  const shareImage = () =>{
+    Taro.showModal({
+      title: '提示',
+      content: '这是一个模态弹窗',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
 
   return (
     <View className="flex items-center justify-center p-1 m-2 bg-white shadow-xl h-36">
@@ -22,7 +37,7 @@ export default function LongCard(props) {
           <View className="w-20 text-xs text-center text-white bg-pink-400 rounded-sm shadow-xl" onClick={gotoCode}>
             查看更多
           </View>
-          <View className="w-20 ml-2 text-xs text-center text-white bg-pink-400 rounded-sm shadow-xl">
+          <View className="w-20 ml-2 text-xs text-center text-white bg-pink-400 rounded-sm shadow-xl" onClick={shareImage}>
             晒贡献
           </View>
         </View>

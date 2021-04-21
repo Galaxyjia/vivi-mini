@@ -18,14 +18,23 @@ function Index() {
   const [datarecommand,setDataRecommand] = useState()
   const [title,setTitle] = useState()
   const [total_subtotal,setTotalSubtotal] = useState()
+  const [token,setToken] = useState()
   // 可以使用所有的 React Hooks
   useEffect(() => {
+    try {
+      var value = Taro.getStorageSync('token')
+      if (value) {
+        setToken(()=>value)
+      }
+    } catch (e) {
+      console.log(e)
+    }
     Taro.request({
       url:'https://vivimini.havefunentertain.com/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id',
       header: {
         // 'content-type': 'application/x-www-form-urlencoded', // 默认值
         "X-Requested-With":"XMLHttpRequest",
-        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
+        'X-Token':token
       },
       method:"GET"
       // dataType:'其他'
@@ -41,7 +50,7 @@ function Index() {
       header: {
         // 'content-type': 'application/x-www-form-urlencoded', // 默认值
         "X-Requested-With":"XMLHttpRequest",
-        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
+        'X-Token':token
       },
       method:"GET"
       // dataType:'其他'

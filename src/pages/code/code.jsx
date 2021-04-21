@@ -38,7 +38,7 @@ function Code() {
       console.log(res.data);
       setData(() => res.data);
     });
-  }, []);
+  }, [index]);
 
   useEffect(() => {
     Taro.request({
@@ -55,7 +55,7 @@ function Code() {
       console.log(res.data);
       setDataPlus(() => res.data);
     });
-  }, []);
+  }, [index]);
 
   // 对应 onReady
   useReady(() => {});
@@ -84,11 +84,19 @@ function Code() {
         }
         </View>
       </View>
+      <View>
       {
-        data&&data.data.lists.map((item,index) =>(
+        index === false && data&&data.data.lists.map((item,index) =>(
           <CodeCard sn={item.sn} code={item.code} key={index}/>
         ))
       }
+      {
+        index === true && dataplus&&dataplus.data.lists.map((item,index)=>(
+          <CodeCard sn={item.sn} code={item.code} key={index}/>
+        ))
+      }
+      </View>
+
     </View>
   );
 }

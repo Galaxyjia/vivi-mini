@@ -1,5 +1,6 @@
 import React from "react";
 import Taro from "@tarojs/taro";
+import arrow from "@icons/arrow.png";
 
 import { View, Text, Button, Image } from "@tarojs/components";
 export default function Rank(props) {
@@ -49,7 +50,9 @@ export default function Rank(props) {
             />
           </View>
         </View>
-        <View onClick={gotodacall}>箭头</View>
+        <View className="pt-2" onClick={gotodacall}>
+          <Image className="w-4 h-4" src={arrow} />
+        </View>
       </View>
     </View>
   );
