@@ -20,7 +20,6 @@ function Code() {
   // 可以使用所有的 React Hooks
   const [data, setData] = useState();
   const [dataplus, setDataPlus] = useState();
-
   const [index,setIndex] = useState(false);
 
   useEffect(() => {

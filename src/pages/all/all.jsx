@@ -3,6 +3,8 @@ import { View, Text } from "@tarojs/components";
 import Nav from "@components/Nav";
 import Card from "@components/Card";
 import Taro from "@tarojs/taro";
+
+
 import {
   useReady,
   useDidShow,
@@ -50,7 +52,7 @@ function All() {
         <View className="flex flex-wrap w-full mx-auto">
         {
           data&&data.data&&data.data.lists.map((item,index)=>(
-            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover}/>
+            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover} id={item.id}/>
           ))
         }
         </View>

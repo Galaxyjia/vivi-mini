@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 
 export default function Card(props) {
-  const {title,total_subscribe,cover} = props;
+  const {title,total_subscribe,cover,id} = props;
+  // const [id,setId] = useState('')
+
   const gotodetails =()=>{
-    Taro.redirectTo({ url: "/pages/detail/detail" });
+    Taro.navigateTo({ url: `/pages/detail/detail?id=${id}`});
   }
 
   return (

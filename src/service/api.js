@@ -27,7 +27,49 @@ export const doRequestAction = (req) =>{
 
 export const getMagezineLists = (data='') => {
   return doRequestAction({
-    url: baseurl+'/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id',
+    url: baseurl+`/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id`,
+    data: data
+  })
+}
+
+export const getAllMagezineLists = (data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id`,
+    data: data
+  })
+}
+
+export const getRecommendMagezineLists = (data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/lists?page=1&pagesize=5&is_recommend=1&sort=-listorder,-id`,
+    data: data
+  })
+}
+
+export const getMagezineDetails = (id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/detail?id=${id}`,
+    data: data
+  })
+}
+
+export const getMagezineRank = (id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/rank_lists?magazine_id=${id}&page=1&pagesize=5`,
+    data: data
+  })
+}
+
+export const getCodeNormal = (id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/rank_lists?magazine_id=${id}&page=1&pagesize=5`,
+    data: data
+  })
+}
+
+export const getCodePlus = (id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/rank_lists?magazine_id=${id}&page=1&pagesize=5`,
     data: data
   })
 }
@@ -40,10 +82,3 @@ export const getLoginCode = (res) => {
     }
   })
 }
-
-
-
-
-
-
-

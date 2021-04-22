@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRouter} from "react";
 import { View, Image, Text,RichText} from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro,{getCurrentInstance} from "@tarojs/taro";
 import Rank from "@components/Rank";
 import Card from "@components/Card";
 import arrow from "@icons/arrow.png";
+import {getMagezineDetails,getMagezineRank} from "@service/api"
 
 import {
   useReady,
@@ -18,34 +19,22 @@ function Detail() {
   const [data,setData]= useState()
   const [rankdata,setRankData] = useState()
   // 可以使用所有的 React Hooks
+  // const { router } = useRouter()
+  // console.log(router.params.id)
+  let { id } = getCurrentInstance().router.params
+  console.log(getCurrentInstance().router.params)
   // 可以使用所有的 React Hooks
+
   useEffect(() => {
-    Taro.request({
-      url:`https://vivimini.havefunentertain.com/api/magazine/detail?id=1`,
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With":"XMLHttpRequest",
-        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
-      },
-      method:"GET"
-      // dataType:'其他'
-    }).then(res=>{
+    getMagezineDetails(id)
+    .then(res=>{
         console.log(res.data)
         setData(()=>res.data)
     })
   },[]);
 
   useEffect(() => {
-    Taro.request({
-      url:`https://vivimini.havefunentertain.com/api/magazine/rank_lists?magazine_id=1&page=1&pagesize=5`,
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With":"XMLHttpRequest",
-        'X-Token':'49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ'
-      },
-      method:"GET"
-      // dataType:'其他'
-    }).then(res=>{
+    getMagezineRank(id).then(res=>{
         console.log(res.data)
         setRankData(()=>res.data)
     })
@@ -90,7 +79,7 @@ function Detail() {
         <View className="m-2">
         {
           rankdata&&rankdata.data&&rankdata.data.lists.map((item,index)=>(
-            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers}/>
+            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers} id={item.id}/>
           ))
         }
         </View>

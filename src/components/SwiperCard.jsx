@@ -8,6 +8,8 @@ import {
   Image,
 } from "@tarojs/components";
 
+import Taro from "@tarojs/taro";
+
 export default function SwiperCard(props) {
   const {datarecommand} = props;
   const [swiperIndex, setSwiperIndex] = useState(0);
@@ -16,6 +18,10 @@ export default function SwiperCard(props) {
     // console.log(e.detail.current);
     setSwiperIndex(e.detail.current);
   };
+
+  const gotodetails =(id)=>{
+    Taro.navigateTo({ url: `/pages/detail/detail?id=${id}`});
+  }
 
   return (
     <View className="w-full bg-white rounded-md shadow-xl h-100">
@@ -36,7 +42,7 @@ export default function SwiperCard(props) {
       >
         {
           datarecommand&&datarecommand.data.lists.map((item,index)=>(
-            <SwiperItem key={`m-${index}`}>
+            <SwiperItem key={`m-`} onClick={()=>gotodetails(item.id)}>
             <View className="h-full m-1 demo-text-1">
               <Image
                 className={

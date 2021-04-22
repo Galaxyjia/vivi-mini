@@ -3,7 +3,7 @@ import { View, Text, Input, Image, Button } from "@tarojs/components";
 import SwiperCard from "@components/SwiperCard";
 import Card from "@components/Card";
 import Taro from "@tarojs/taro";
-import {getMagezineLists} from "@service/api"
+import {getMagezineLists,getRecommendMagezineLists} from "@service/api"
 
 import {
   useReady,
@@ -17,30 +17,17 @@ import Nav from "@components/Nav";
 function Index() {
   const [data,setData] = useState()
   const [datarecommand,setDataRecommand] = useState()
-  const [title,setTitle] = useState()
-  const [total_subtotal,setTotalSubtotal] = useState()
-  const [token,setToken] = useState()
   // 可以使用所有的 React Hooks
   useEffect(() => {
     getMagezineLists().then(res=>{
           console.log(res.data)
           setData(()=>res.data)
       })
-
   },[]);
 
   useEffect(() => {
-    Taro.request({
-      url:'https://vivimini.havefunentertain.com/api/magazine/lists?page=1&pagesize=5&is_recommend=1&sort=-listorder,-id',
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With":"XMLHttpRequest",
-        'X-Token':token
-      },
-      method:"GET"
-      // dataType:'其他'
-    }).then(res=>{
-        console.log("recommand: ",res.data)
+    getRecommendMagezineLists().then(res=>{
+        console.log("recommend: ",res.data)
         setDataRecommand(()=>res.data)
     })
   },[]);
@@ -70,7 +57,7 @@ function Index() {
         <View className="flex flex-wrap w-full mx-auto">
         {
           data&&data.data&&data.data.lists.map((item,index)=>(
-            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover}/>
+            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover} id={item.id}/>
           ))
         }
         </View>

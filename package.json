@@ -42,9 +42,16 @@
     "@tarojs/runtime": "3.0.7",
     "@tarojs/taro": "3.0.7",
     "autoprefixer": "^9",
-    "react": "^16.10.0",
+    "react": "16.3.1",
     "react-dom": "^16.10.0",
-    "taro-plugin-tailwind": "^1.0.6"
+    "taro-plugin-tailwind": "^1.0.6",
+    "@tarojs/components-rn": "^3.0.7",
+    "@tarojs/taro-rn": "^3.0.7",
+    "@tarojs/taro-router-rn": "^3.0.7",
+    "@tarojs/taro-redux-rn": "^3.0.7",
+    "react-native": "0.55.4",
+    "redux": "^4.0.0",
+    "tslib": "^1.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
