@@ -3,7 +3,7 @@ import { View, Text, Input, Image, Button } from "@tarojs/components";
 import SwiperCard from "@components/SwiperCard";
 import Card from "@components/Card";
 import Taro from "@tarojs/taro";
-import {getMagezineLists} from "../../service/api"
+import {getMagezineLists} from "@service/api"
 
 import {
   useReady,
@@ -22,28 +22,10 @@ function Index() {
   const [token,setToken] = useState()
   // 可以使用所有的 React Hooks
   useEffect(() => {
-    try {
-      var value = Taro.getStorageSync('token')
-      if (value) {
-        setToken(()=>value)
-      }
-    } catch (e) {
-      console.log(e)
-    }
-    // Taro.request({
-    //   url:'https://vivimini.havefunentertain.com/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id',
-    //   header: {
-    //     // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-    //     "X-Requested-With":"XMLHttpRequest",
-    //     'X-Token':token
-    //   },
-    //   method:"GET"
-    //   // dataType:'其他'
-    // }).then(res=>{
-    //     console.log(res.data)
-    //     setData(()=>res.data)
-    // })
-    getMagezineLists('').then(res=>console.log(res))
+    getMagezineLists().then(res=>{
+          console.log(res.data)
+          setData(()=>res.data)
+      })
 
   },[]);
 

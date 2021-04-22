@@ -1,4 +1,4 @@
-export const base = "https://api.github.com/repos/";
+export const baseurl = "https://vivimini.havefunentertain.com";
 
 //定义全局请求地址，因为我们用到的地址是https://cnodejs.org/api/v1
 export const DOMAIN = 'https://vivimini.havefunentertain.com/'

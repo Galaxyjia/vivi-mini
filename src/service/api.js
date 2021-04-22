@@ -1,32 +1,43 @@
-import {doRequestAction} from '../utils/request'
-import {magazineList,loginCode} from './config'
 import Taro from "@tarojs/taro";
+import {baseurl} from "./config"
 
-// 调用封装方法 返回promise对象 得到获取到的数据
-// export const getTopics = (data) => {
-//   return doRequestAction({
-//     url: Api.topics,
-//     data: data
-//   })
-// }
+export const doRequestAction = (req) =>{
+  let token='';
+  try {
+    var value= Taro.getStorageSync('token')
+    if (value) {
+      // Do something with return value
+      token = value
+    }
+  } catch (e) {
+    // Do something when catch error
+    console.log(e)
+  }
 
-export const getMagezineLists = (data) => {
+  return Taro.request({
+    url:req.url,
+    header:{
+      "X-Requested-With": "XMLHttpRequest",
+      "X-Token":token
+    },
+    data:req.data,
+    method:"GET"
+  })
+}
+
+export const getMagezineLists = (data='') => {
   return doRequestAction({
-    url: magazineList,
+    url: baseurl+'/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id',
     data: data
   })
 }
 
 export const getLoginCode = (res) => {
-  return  Taro.request({
-    url: "https://vivimini.havefunentertain.com/api/user/login",
-    header: {
-      "X-Requested-With": "XMLHttpRequest",
-    },
-    data: {
-      code: res.code,
-    },
-    method: "GET",
+  return doRequestAction({
+    url:baseurl+"/api/user/login",
+    data:{
+      code:res.code
+    }
   })
 }
 
