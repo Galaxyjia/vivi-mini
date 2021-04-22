@@ -5,7 +5,8 @@ const config = {
     '@components': path.resolve(__dirname, '..', 'src/components'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
     '@assets': path.resolve(__dirname, '..', 'src/assets'),
-    '@icons': path.resolve(__dirname, '..', 'src/assets/icons')
+    '@icons': path.resolve(__dirname, '..', 'src/assets/icons'),
+    '@service': path.resolve(__dirname, '..', 'src/service')
   },
   projectName: 'vivi-mini',
   date: '2021-2-27',

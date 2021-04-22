@@ -3,6 +3,7 @@ import { View, Text, Input, Image, Button } from "@tarojs/components";
 import SwiperCard from "@components/SwiperCard";
 import Card from "@components/Card";
 import Taro from "@tarojs/taro";
+import {getMagezineLists} from "../../service/api"
 
 import {
   useReady,
@@ -29,19 +30,21 @@ function Index() {
     } catch (e) {
       console.log(e)
     }
-    Taro.request({
-      url:'https://vivimini.havefunentertain.com/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id',
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With":"XMLHttpRequest",
-        'X-Token':token
-      },
-      method:"GET"
-      // dataType:'其他'
-    }).then(res=>{
-        console.log(res.data)
-        setData(()=>res.data)
-    })
+    // Taro.request({
+    //   url:'https://vivimini.havefunentertain.com/api/magazine/lists?page=1&pagesize=5&is_recommend=-1&sort=-listorder,-id',
+    //   header: {
+    //     // 'content-type': 'application/x-www-form-urlencoded', // 默认值
+    //     "X-Requested-With":"XMLHttpRequest",
+    //     'X-Token':token
+    //   },
+    //   method:"GET"
+    //   // dataType:'其他'
+    // }).then(res=>{
+    //     console.log(res.data)
+    //     setData(()=>res.data)
+    // })
+    getMagezineLists('').then(res=>console.log(res))
+
   },[]);
 
   useEffect(() => {

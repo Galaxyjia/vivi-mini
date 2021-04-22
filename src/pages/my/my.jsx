@@ -4,6 +4,7 @@ import LongCard from "@components/LongCard";
 import Taro from "@tarojs/taro";
 import logo from "@assets/images/vivi.jpg";
 import earphone from "@assets/icons/earphone.png";
+import {getLoginCode} from "@service/api";
 
 import {
   useReady,
@@ -74,23 +75,24 @@ function My() {
       success: function (res) {
         if (res.code) {
           console.log(res);
+          getLoginCode(res).then(rest=>console.log(rest))
           //发起网络请求
-          Taro.request({
-            url: "https://vivimini.havefunentertain.com/api/user/login",
-            header: {
-              "X-Requested-With": "XMLHttpRequest",
-            },
-            data: {
-              code: res.code,
-            },
-            method: "GET",
-          }).then((result) => {
-            console.log(result);
-            Taro.setStorage({
-              key:"token",
-              data:result
-            })
-          });;
+          // Taro.request({
+          //   url: "https://vivimini.havefunentertain.com/api/user/login",
+          //   header: {
+          //     "X-Requested-With": "XMLHttpRequest",
+          //   },
+          //   data: {
+          //     code: res.code,
+          //   },
+          //   method: "GET",
+          // }).then((result) => {
+          //   console.log(result);
+          //   Taro.setStorage({
+          //     key:"token",
+          //     data:result
+          //   })
+          // });;
         } else {
           console.log("登录失败！" + res.errMsg);
         }
