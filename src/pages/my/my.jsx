@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, Image } from "@tarojs/components";
+import { View, Image,Button } from "@tarojs/components";
 import LongCard from "@components/LongCard";
 import Taro from "@tarojs/taro";
 import logo from "@assets/images/vivi.jpg";
 import earphone from "@assets/icons/earphone.png";
-import {getLoginCode} from "@service/api";
+import {getLoginCode,getProfile,getOrderLists} from "@service/api";
 
 import {
   useReady,
@@ -22,34 +22,14 @@ function My() {
   const [islogin, setIsLoggin] = useState(false);
 
   useEffect(() => {
-    Taro.request({
-      url: "https://vivimini.havefunentertain.com/api/order/lists",
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With": "XMLHttpRequest",
-        "X-Token":
-          "49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ",
-      },
-      method: "GET",
-      // dataType:'其他'
-    }).then((res) => {
+    getOrderLists().then((res) => {
       console.log(res.data);
       setData(() => res.data);
     });
   }, []);
 
   useEffect(() => {
-    Taro.request({
-      url: "https://vivimini.havefunentertain.com/api/user/get_profile",
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With": "XMLHttpRequest",
-        "X-Token":
-          "49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ",
-      },
-      method: "GET",
-      // dataType:'其他'
-    }).then((res) => {
+    getProfile().then((res) => {
       console.log(res.data);
       setMyData(() => res.data);
     });
@@ -79,6 +59,10 @@ function My() {
               key:"token",
               data:result.data.data.token
             })
+            getProfile().then((res) => {
+              console.log(res.data);
+              setMyData(() => res.data);
+            });
           });
         } else {
           console.log("登录失败！" + res.errMsg);
@@ -91,24 +75,28 @@ function My() {
     <View className="min-h-screen bg-white">
       <View className="w-full ">
         <View className="flex flex-row justify-around h-20 bg-pink-400 shadow-xl" onClick={userLogin}>
-          <Image
-            src={logo}
-            className="w-10 h-10 rounded-full shadow-xl"
-          />
+          {
+            mydata&&mydata.data?
+            <Image
+              src={mydata.data.avatar_url}
+              className="w-10 h-10 rounded-full shadow-xl"
+            />:
+            <Image
+              src={logo}
+              className="w-10 h-10 bg-gray-500 rounded-full shadow-xl "
+            />
+          }
+
           <View className="ml-2 text-white">
-            <View>{mydata && mydata.data.nick_name}</View>
+            <View>{mydata&&mydata.data?mydata.data.nick_name:"请登录"}</View>
             <View>
               id:
-              {mydata && mydata.data.id}
+              {mydata&&mydata.data?mydata.data.id:"请登录"}
             </View>
           </View>
           <View className="mt-2 ml-8 text-white">
-          <Image
-            src={earphone}
-            className="w-6 h-6"
-          />
+          <Button id="button" openType="contact" bindContact="handleContact" className="w-10 h-10 bg-pink-400 rounded-full"><Image src={earphone} className="w-6 h-6"></Image></Button>
           </View>
-
         </View>
         <View className="-mt-6">
           {data && data.data && data.data.lists.map((item, index) => (

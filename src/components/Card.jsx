@@ -11,10 +11,10 @@ export default function Card(props) {
   }
 
   return (
-    <View className="m-2 bg-white rounded-md shadow-xl h-52 w-5_12" onClick={gotodetails}>
+    <View className="m-2 bg-white rounded-md shadow-xl h-58 w-5_12" onClick={gotodetails}>
       <View className="p-1">
         <Image
-          className="w-full h-32"
+          className="w-full h-40"
           // mode="aspectFill"
           src={cover}
         />

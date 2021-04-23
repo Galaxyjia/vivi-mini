@@ -16,6 +16,7 @@ export default function CodeCard(props) {
         imageUrl:'https://camo.githubusercontent.com/3e1b76e514b895760055987f164ce6c95935a3aa/687474703a2f2f73746f726167652e333630627579696d672e636f6d2f6d74642f686f6d652f6c6f676f2d3278313531333833373932363730372e706e67'
       }
     }
+
     return {
       title: '自定义转发标题',
       path: '/page/user?id=123'
@@ -47,12 +48,12 @@ export default function CodeCard(props) {
           <Text className="text-xs text-gray-300">未使用{code}</Text>
         </View>
       </View>
-      <View className="flex flex-row items-center" onClick={handlecopy}>
-      <Button className="w-16 h-10 text-gray-500 bg-pink-100 rounded-sm text-md">复制</Button>
-      </View>
-      <View className="flex flex-row items-center">
-      <Button open-type="share" className="w-16 h-10 text-gray-500 bg-pink-100 rounded-sm text-md">赠予</Button>
-      </View>
+        <View className="flex flex-row items-center" onClick={handlecopy}>
+        <Button className="w-16 h-10 text-gray-500 bg-pink-100 rounded-sm text-md">复制</Button>
+        </View>
+        <View className="flex flex-row items-center">
+        <Button open-type="share" className="w-16 h-10 text-gray-500 bg-pink-100 rounded-sm text-md">赠予</Button>
+        </View>
     </View>
   );
 }

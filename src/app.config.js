@@ -10,7 +10,8 @@ export default {
     "pages/dacall/dacall",
     "pages/code/code",
     "pages/codenormal/codenormal",
-    "pages/codeplus/codeplus"
+    "pages/codeplus/codeplus",
+    "pages/kaiping/kaiping"
   ],
 
   window: {

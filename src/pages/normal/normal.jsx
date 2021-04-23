@@ -8,10 +8,13 @@ import {
   useDidHide,
   usePullDownRefresh,
 } from "@tarojs/taro";
-import DetailNav from "@components/DetailNav"
+import Taro,{getCurrentInstance} from "@tarojs/taro";
 
 function Normal() {
   // 可以使用所有的 React Hooks
+  let { path } = getCurrentInstance().router.params
+  console.log(getCurrentInstance().router.params)
+
   useEffect(() => {});
 
   // 对应 onReady
@@ -29,7 +32,7 @@ function Normal() {
 
   return (
     <View className="min-h-screen bg-white">
-    <WebView src='https://mp.weixin.qq.com/'/>
+    <WebView src={path}/>
     </View>
   );
 }

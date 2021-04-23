@@ -19,8 +19,6 @@ function Detail() {
   const [data,setData]= useState()
   const [rankdata,setRankData] = useState()
   // 可以使用所有的 React Hooks
-  // const { router } = useRouter()
-  // console.log(router.params.id)
   let { id } = getCurrentInstance().router.params
   console.log(getCurrentInstance().router.params)
   // 可以使用所有的 React Hooks
@@ -79,12 +77,15 @@ function Detail() {
         <View className="m-2">
         {
           rankdata&&rankdata.data&&rankdata.data.lists.map((item,index)=>(
-            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers} id={item.id}/>
+            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers} magazine_id={item.magazine_id} user_id={item.user.id}/>
           ))
         }
         </View>
       </View>
-      <DetailNav />
+      {
+        data&&data.data?<DetailNav id={id} path={data.data.path} path2={data.data.path2}/>:<DetailNav id={id}/>
+      }
+
     </View>
   );
 }

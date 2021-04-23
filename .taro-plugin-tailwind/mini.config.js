@@ -100,7 +100,9 @@ module.exports = {
       auto: "auto",
       ...theme("width"),
       screen: "100vh",
-      "100":"960px"
+      "100":"960px",
+      "image":"240px",
+      "card": "308px",
     }),
     maxHeight: {
       full: "100%",

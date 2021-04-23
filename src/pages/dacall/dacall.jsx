@@ -8,15 +8,18 @@ import {
   useDidHide,
   usePullDownRefresh,
 } from "@tarojs/taro";
-import Taro from "@tarojs/taro";
+import Taro,{getCurrentInstance} from "@tarojs/taro";
+import {getDacallDetail} from "@service/api"
 
 function Dacall() {
   const [data, setData] = useState();
   const [dacalldata,setDacallData] = useState();
+  let { magazine_id,user_id } = getCurrentInstance().router.params
+  console.log(magazine_id,user_id)
   // 可以使用所有的 React Hooks
   useEffect(() => {
     Taro.request({
-      url: "https://vivimini.havefunentertain.com/api/magazine/call_detail?magazine_id=1&user_id=6",
+      url: `https://vivimini.havefunentertain.com/api/magazine/call_detail?magazine_id=${magazine_id}&user_id=${user_id}`,
       header: {
         // 'content-type': 'application/x-www-form-urlencoded', // 默认值
         "X-Requested-With": "XMLHttpRequest",
@@ -33,7 +36,7 @@ function Dacall() {
 
   useEffect(() => {
     Taro.request({
-      url: "https://vivimini.havefunentertain.com/api/magazine/called_users?magazine_id=1&user_id=6&page=1&pagesize=5",
+      url: `https://vivimini.havefunentertain.com/api/magazine/called_users?magazine_id=${magazine_id}&user_id=${user_id}&page=1&pagesize=5`,
       header: {
         // 'content-type': 'application/x-www-form-urlencoded', // 默认值
         "X-Requested-With": "XMLHttpRequest",
@@ -66,12 +69,13 @@ function Dacall() {
       <View className="w-full">
         <View className="flex items-center justify-center">
           {
-            data&&data.user
-          }
-          <Image
-            className={"w-20 h-20 bg-pink-500 mt-2 mx-auto p-1 rounded-full "}
-            src="https://camo.githubusercontent.com/3e1b76e514b895760055987f164ce6c95935a3aa/687474703a2f2f73746f726167652e333630627579696d672e636f6d2f6d74642f686f6d652f6c6f676f2d3278313531333833373932363730372e706e67"
+            data&&data.user&&
+            <Image
+            className={"w-20 h-20 bg-pink-500 mt-2 mx-auto rounded-full"}
+            src={data.user.avatar_url}
           />
+          }
+
         </View>
         <View className="flex items-center justify-center mt-2">ViVi全球后援会</View>
         <View className="flex justify-around mt-2">
@@ -86,7 +90,7 @@ function Dacall() {
           <View>
             <View className="flex items-center justify-center">
               {
-                data&&data.stats.myself_subscribe
+                data&&data.stats.myself_subscribe?data.stats.myself_subscribe:"0"
               }
             </View>
             <View>独自订阅</View>
@@ -94,7 +98,7 @@ function Dacall() {
           <View>
             <View className="flex items-center justify-center">
             {
-              data&&data.stats.other_support
+              data&&data.stats&&data.stats.other_support?data.stats.other_support:"0"
             }
             </View>
             <View>亲友打call</View>

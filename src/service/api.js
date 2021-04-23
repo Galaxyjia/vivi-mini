@@ -74,6 +74,27 @@ export const getCodePlus = (id,data='') => {
   })
 }
 
+export const getProfile = (data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/user/get_profile`,
+    data: data
+  })
+}
+
+export const getDacallDetail = (magazine_id,user_id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/call_detail?magazine_id=${magazine_id}&user_id=${user_id}`,
+    data: data
+  })
+}
+
+export const getOrderLists = (data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/order/lists`,
+    data: data
+  })
+}
+
 export const getLoginCode = (res) => {
   return doRequestAction({
     url:baseurl+"/api/user/login",

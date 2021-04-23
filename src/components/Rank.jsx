@@ -4,10 +4,10 @@ import arrow from "@icons/arrow.png";
 
 import { View, Text, Button, Image } from "@tarojs/components";
 export default function Rank(props) {
-  const {amount,nickname,avatar_url,callers,id} = props;
+  const {amount,nickname,avatar_url,callers,magazine_id,user_id} = props;
 
   const gotodacall =()=>{
-    Taro.redirectTo({ url: `/pages/dacall/dacall` });
+    Taro.redirectTo({ url: `/pages/dacall/dacall?magazine_id=${magazine_id}&user_id=${user_id}`});
   }
 
   return (
