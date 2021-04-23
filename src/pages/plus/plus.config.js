@@ -1,5 +1,5 @@
 export default {
-  navigationBarTitleText: '豪华版',
+  navigationBarTitleText: '',
   navigationBarBackgroundColor:'#F472B6',
   navigationBarTextStyle:'white'
 }

@@ -10,7 +10,7 @@ export default function Card(props) {
   }
 
   return (
-    <View className="m-2 bg-white rounded-md shadow-xl w-36 h-58" onClick={gotodetails}>
+    <View className="m-2 bg-white rounded-md shadow-xl h-58 w-5_12" onClick={gotodetails}>
       <View className="p-1">
         <Image
           className="w-full h-40"

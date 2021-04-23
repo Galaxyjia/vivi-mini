@@ -72,12 +72,12 @@ function Detail() {
           </View>
         </View>
         <View className="flex items-center justify-center h-8">
-          <View>订阅排行版</View>
+          <View className="text-xl text-bold">订阅排行榜</View>
         </View>
-        <View className="m-2">
+        <View className="w-full m-2">
         {
           rankdata&&rankdata.data&&rankdata.data.lists.map((item,index)=>(
-            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers} magazine_id={item.magazine_id} user_id={item.user.id}/>
+            <Rank key={index} amount={item.amount} nickname={item.user.nick_name} avatar_url={item.user.avatar_url} callers={item.callers} magazine_id={item.magazine_id} user_id={item.user.id} index={index}/>
           ))
         }
         </View>

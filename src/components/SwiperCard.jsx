@@ -54,7 +54,7 @@ export default function SwiperCard(props) {
               />
               <View className="flex flex-col items-center justify-center">
                 <Text className="text-xs font-bold">{item.title}</Text>
-                <Text className="text-xs text-gray-300">销售{item.total_subscribe}份</Text>
+                <Text className="text-xs text-gray-300">已订阅{item.total_subscribe}份</Text>
               </View>
             </View>
             </SwiperItem>

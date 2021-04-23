@@ -60,16 +60,16 @@ export const getMagezineRank = (id,data='') => {
   })
 }
 
-export const getCodeNormal = (id,data='') => {
+export const getCodeNormal = (magazine_id,data='') => {
   return doRequestAction({
-    url: baseurl+`/api/magazine/rank_lists?magazine_id=${id}&page=1&pagesize=5`,
+    url: baseurl+`/api/order/codes?magazine_id=${magazine_id}&type=0&page=1&pagesize=5`,
     data: data
   })
 }
 
-export const getCodePlus = (id,data='') => {
+export const getCodePlus = (magazine_id,data='') => {
   return doRequestAction({
-    url: baseurl+`/api/magazine/rank_lists?magazine_id=${id}&page=1&pagesize=5`,
+    url: baseurl+`/api/order/codes?magazine_id=${magazine_id}&type=1&page=1&pagesize=5`,
     data: data
   })
 }
@@ -84,6 +84,13 @@ export const getProfile = (data='') => {
 export const getDacallDetail = (magazine_id,user_id,data='') => {
   return doRequestAction({
     url: baseurl+`/api/magazine/call_detail?magazine_id=${magazine_id}&user_id=${user_id}`,
+    data: data
+  })
+}
+
+export const getDacallCaller = (magazine_id,user_id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/magazine/called_users?magazine_id=${magazine_id}&user_id=${user_id}`,
     data: data
   })
 }

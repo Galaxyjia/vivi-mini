@@ -95,14 +95,16 @@ module.exports = {
       "11_12": "91.666667%",
       full: "100%",
       screen: "100vw",
+      "cardwidth":"172px",
+      "cardimagewidth":"160px"
     }),
     height: (theme) => ({
       auto: "auto",
       ...theme("width"),
       screen: "100vh",
       "100":"960px",
-      "image":"240px",
-      "card": "308px",
+      "cardimageheight":"240px",
+      "cardheight": "308px",
     }),
     maxHeight: {
       full: "100%",

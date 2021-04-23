@@ -9,7 +9,7 @@ import {
   usePullDownRefresh,
 } from "@tarojs/taro";
 import Taro,{getCurrentInstance} from "@tarojs/taro";
-import {getDacallDetail} from "@service/api"
+import {getDacallDetail,getDacallCaller} from "@service/api"
 
 function Dacall() {
   const [data, setData] = useState();
@@ -18,34 +18,14 @@ function Dacall() {
   console.log(magazine_id,user_id)
   // 可以使用所有的 React Hooks
   useEffect(() => {
-    Taro.request({
-      url: `https://vivimini.havefunentertain.com/api/magazine/call_detail?magazine_id=${magazine_id}&user_id=${user_id}`,
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With": "XMLHttpRequest",
-        "X-Token":
-          "49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ",
-      },
-      method: "GET",
-      // dataType:'其他'
-    }).then((res) => {
+    getDacallDetail(magazine_id,user_id).then((res) => {
       console.log(res.data);
       setData(() => res.data);
     });
   }, []);
 
   useEffect(() => {
-    Taro.request({
-      url: `https://vivimini.havefunentertain.com/api/magazine/called_users?magazine_id=${magazine_id}&user_id=${user_id}&page=1&pagesize=5`,
-      header: {
-        // 'content-type': 'application/x-www-form-urlencoded', // 默认值
-        "X-Requested-With": "XMLHttpRequest",
-        "X-Token":
-          "49f8B1UEAwcDBARVVAVVDVYDAgQLUQdUCFsNBgFUXAoGAwNUVQxXVAVVBgcCBAAOAQIOBwgBVAQDCAwDAQ",
-      },
-      method: "GET",
-      // dataType:'其他'
-    }).then((res) => {
+    getDacallCaller(magazine_id,user_id).then((res) => {
       console.log(res.data);
       setDacallData(() => res.data);
     });
@@ -77,7 +57,12 @@ function Dacall() {
           }
 
         </View>
-        <View className="flex items-center justify-center mt-2">ViVi全球后援会</View>
+        <View className="flex items-center justify-center mt-2">
+          {
+            data&&data.user&&
+            data.user.nick_name
+          }
+        </View>
         <View className="flex justify-around mt-2">
           <View>
             <View className="flex items-center justify-center">

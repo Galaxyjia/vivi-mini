@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { View ,WebView} from "@tarojs/components";
-import LongCard from "@components/LongCard"
 
 import {
   useReady,
@@ -8,7 +7,6 @@ import {
   useDidHide,
   usePullDownRefresh,
 } from "@tarojs/taro";
-import DetailNav from "@components/DetailNav"
 
 function CodePlus(props) {
   const {url} = props

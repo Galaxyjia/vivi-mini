@@ -1,5 +1,5 @@
 export default {
-  navigationBarTitleText: 'dacall',
+  navigationBarTitleText: '',
   navigationBarBackgroundColor:'#F472B6',
   navigationBarTextStyle:'white'
 }

@@ -53,11 +53,13 @@ function Index() {
       <View className="flex items-center justify-center mx-auto mt-3 w-1_2">
         <Text>热门期刊</Text>
       </View>
-      <View className="w-full p-3">
+      <View className="w-full">
         <View className="flex flex-wrap w-full mx-auto">
         {
           data&&data.data&&data.data.lists.map((item,index)=>(
-            <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover} id={item.id}/>
+            <View className="m-1 w-36">
+              <Card key={index} title={item.title} total_subscribe={item.total_subscribe} cover={item.cover} id={item.id}/>
+            </View>
           ))
         }
         </View>
