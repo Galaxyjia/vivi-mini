@@ -14,7 +14,9 @@ export default function Rank(props) {
     <View className="w-full h-24 shadow-xl">
       <View className="flex flex-row items-center justify-start">
         <View className="flex flex-row items-center justify-center ml-3 text-3xl text-bold">
-          {index+1}
+        {
+          index+1
+        }
         </View>
         <View className="flex flex-row items-center justify-center ml-10">
           <Image

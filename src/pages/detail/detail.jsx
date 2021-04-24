@@ -4,7 +4,7 @@ import Taro,{getCurrentInstance} from "@tarojs/taro";
 import Rank from "@components/Rank";
 import Card from "@components/Card";
 import arrow from "@icons/arrow.png";
-import {getMagezineDetails,getMagezineRank} from "@service/api"
+import {getMagezineDetails,getMagezineRank,getCheckCodeNormal,getCheckCodePlus} from "@service/api"
 
 import {
   useReady,
@@ -18,16 +18,31 @@ function Detail() {
   // const {id} = props;
   const [data,setData]= useState()
   const [rankdata,setRankData] = useState()
-  // 可以使用所有的 React Hooks
+  const [isCheckedNormal,setCheckedNormal] = useState()
+  const [isCheckedPlus,setCheckedPlus] = useState()
+  const [path,setPath] = useState()
+  const [path2,setPath2] = useState()
+
+  // magazine_id
   let { id } = getCurrentInstance().router.params
   console.log(getCurrentInstance().router.params)
   // 可以使用所有的 React Hooks
 
+  const parentCallbackNormal = (value) =>{
+    console.log("normal value:",value)
+  }
+
+  const parentCallbackPlus = (value) =>{
+    console.log("plus value:",value)
+  }
+
   useEffect(() => {
     getMagezineDetails(id)
     .then(res=>{
-        console.log(res.data)
+        console.log("data: ",res.data)
         setData(()=>res.data)
+        setPath(()=>res.data.path)
+        setPath2(()=>res.data.path2)
     })
   },[]);
 
@@ -37,6 +52,24 @@ function Detail() {
         setRankData(()=>res.data)
     })
   },[]);
+
+  useEffect(()=>{
+    getCheckCodeNormal(id)
+    .then((res)=>
+      {
+        console.log("checknormal:",res)
+        setCheckedNormal(()=>res.data.code)
+      })
+  },[])
+
+  useEffect(() => {
+    getCheckCodePlus(id)
+    .then((res)=>
+      {
+        console.log("checkplus:",res)
+        setCheckedPlus(()=>res.data.code)
+      })
+  },[])
 
   // 对应 onReady
   useReady(() => {});
@@ -82,10 +115,9 @@ function Detail() {
         }
         </View>
       </View>
-      {
-        data&&data.data?<DetailNav id={id} path={data.data.path} path2={data.data.path2}/>:<DetailNav id={id}/>
-      }
-
+        {
+          data&&data.data?<DetailNav id={id} path={data.data.path} path2={data.data.path2} magazine_id={id} isCheckedNormal={isCheckedNormal} isCheckedPlus={isCheckedPlus} parentCallbackNormal={parentCallbackNormal} parentCallbackPlus={parentCallbackPlus}/>:<DetailNav id={id}/>
+        }
     </View>
   );
 }

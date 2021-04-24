@@ -64,7 +64,6 @@ function Index() {
         }
         </View>
       </View>
-
       <Nav index="0"/>
     </View>
   );

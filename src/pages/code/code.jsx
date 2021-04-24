@@ -1,7 +1,7 @@
 import React, {useState,useEffect } from "react";
 import { View, WebView,Image} from "@tarojs/components";
 import CodeCard from "@components/CodeCard";
-import Taro from "@tarojs/taro";
+import Taro,{getCurrentInstance} from "@tarojs/taro";
 import {getCodeNormal,getCodePlus} from "@service/api"
 
 import normal_clicked from "@icons/normal_clicked.png";
@@ -20,18 +20,20 @@ function Code() {
   // 可以使用所有的 React Hooks
   const [data, setData] = useState();
   const [dataplus, setDataPlus] = useState();
-  const [index,setIndex] = useState(false);
+  const [index,setIndex] = useState(true);
+  let { magazine_id,user_id } = getCurrentInstance().router.params
+  console.log(getCurrentInstance().router.params)
 
   useEffect(() => {
-    getCodeNormal().then((res) => {
-      console.log(res.data);
+    getCodeNormal(magazine_id).then((res) => {
+      console.log("normal codes",res.data);
       setData(() => res.data);
     });
   }, [index]);
 
   useEffect(() => {
-    getCodePlus().then((res) => {
-      console.log(res.data);
+    getCodePlus(magazine_id).then((res) => {
+      console.log("plus codes",res.data);
       setDataPlus(() => res.data);
     });
   }, [index]);
@@ -65,17 +67,16 @@ function Code() {
       </View>
       <View>
       {
-        index === false && data&&data.data.lists.map((item,index) =>(
+        index === true && data&&data.data.lists.map((item,index) =>(
           <CodeCard sn={item.sn} code={item.code} key={index}/>
         ))
       }
       {
-        index === true && dataplus&&dataplus.data.lists.map((item,index)=>(
+        index === false && dataplus&&dataplus.data.lists.map((item,index)=>(
           <CodeCard sn={item.sn} code={item.code} key={index}/>
         ))
       }
       </View>
-
     </View>
   );
 }

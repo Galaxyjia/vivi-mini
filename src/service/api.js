@@ -62,14 +62,14 @@ export const getMagezineRank = (id,data='') => {
 
 export const getCodeNormal = (magazine_id,data='') => {
   return doRequestAction({
-    url: baseurl+`/api/order/codes?magazine_id=${magazine_id}&type=0&page=1&pagesize=5`,
+    url: baseurl+`/api/order/codes?magazine_id=${magazine_id}&type=0&page=1&pagesize=10000`,
     data: data
   })
 }
 
 export const getCodePlus = (magazine_id,data='') => {
   return doRequestAction({
-    url: baseurl+`/api/order/codes?magazine_id=${magazine_id}&type=1&page=1&pagesize=5`,
+    url: baseurl+`/api/order/codes?magazine_id=${magazine_id}&type=1&page=1&pagesize=10000`,
     data: data
   })
 }
@@ -110,3 +110,20 @@ export const getLoginCode = (res) => {
     }
   })
 }
+
+//普通版0，plus版1
+export const getCheckCodeNormal = (magazine_id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/code/check_auth?magazine_id=${magazine_id}&code_type=0`,
+    data: data
+  })
+}
+
+export const getCheckCodePlus= (magazine_id,data='') => {
+  return doRequestAction({
+    url: baseurl+`/api/code/check_auth?magazine_id=${magazine_id}&code_type=1`,
+    data: data
+  })
+}
+
+

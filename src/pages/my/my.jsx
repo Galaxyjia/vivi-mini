@@ -73,7 +73,7 @@ function My() {
 
   return (
     <View className="min-h-screen bg-white">
-      <View className="w-full ">
+      <View className="w-full">
         <View className="flex flex-row justify-around h-20 bg-pink-400 shadow-xl" onClick={userLogin}>
           {
             mydata&&mydata.data?
@@ -105,6 +105,7 @@ function My() {
                 title={item.title}
                 total_subscribe={item.total_subscribe}
                 cover={item.cover}
+                magazine_id = {item.id}
               />
             ))}
         </View>

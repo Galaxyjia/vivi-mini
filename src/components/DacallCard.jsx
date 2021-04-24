@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Button, Image } from "@tarojs/components";
-import Taro from "@tarojs/taro";
 
 export default function DacallCard(props) {
   const {nick_name,avatar_url,total_subscribe} = props;

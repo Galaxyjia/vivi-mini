@@ -38,22 +38,24 @@ export default function CodeCard(props) {
 
   return (
     <View
-      className="flex flex-row justify-around m-2 bg-white rounded-md shadow-xl h-14"
+      className="flex flex-row justify-around m-1 bg-white rounded-md shadow-xl h-14"
     >
       <View className="flex flex-col justify-around mt-2">
-        <View className="pl-2">
+        <View className="w-24 pl-1">
           <Text>{sn}</Text>
         </View>
-        <View className="pl-2">
+        <View className="pl-1">
           <Text className="text-xs text-gray-300">未使用{code}</Text>
         </View>
       </View>
+      <View className="flex flex-row items-center justify-around w-40">
         <View className="flex flex-row items-center" onClick={handlecopy}>
-        <Button className="w-16 h-10 text-gray-500 bg-pink-100 rounded-sm text-md">复制</Button>
+        <Button className="h-6 text-xs text-center text-gray-500 bg-pink-100 rounded-sm w-14 text-align-middle">复制</Button>
         </View>
         <View className="flex flex-row items-center">
-        <Button open-type="share" className="w-16 h-10 text-gray-500 bg-pink-100 rounded-sm text-md">赠予</Button>
+        <Button open-type="share" className="h-6 text-xs text-center text-gray-500 bg-pink-100 rounded-sm w-14 text-align-middle">赠予</Button>
         </View>
+      </View>
     </View>
   );
 }

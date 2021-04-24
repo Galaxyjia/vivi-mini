@@ -3,10 +3,10 @@ import { View, Text, Button, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 
 export default function LongCard(props) {
-  const {title,total_subscribe,cover} = props;
+  const {title,total_subscribe,cover,magazine_id} = props;
   const [isSharePic,setIsSharePic] = useState()
   const gotoCode = () => {
-    Taro.redirectTo({ url: "/pages/code/code?magazine_id=" });
+    Taro.redirectTo({ url: `/pages/code/code?magazine_id=${magazine_id}`});
   };
 
   const shareImage = () =>{
@@ -31,7 +31,7 @@ export default function LongCard(props) {
         src={cover}
       />
       <View className="flex flex-col items-start justify-between h-32 ml-2 ">
-        <Text className="w-32 ml-2 text-font-bold">{title}</Text>
+        <Text className="w-40 ml-2 text-xs text-font-bold">{title}</Text>
         <Text className="w-32 ml-2 text-xs text-gray-300">{total_subscribe}份订阅</Text>
         <View className="flex justify-around ml-2">
           <View className="w-20 text-xs text-center text-white bg-pink-400 rounded-sm shadow-xl" onClick={gotoCode}>

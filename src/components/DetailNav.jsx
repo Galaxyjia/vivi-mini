@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState, useEffect }from "react";
 import Taro from "@tarojs/taro";
 import { useShareAppMessage } from '@tarojs/taro'
 
@@ -13,11 +13,8 @@ import plus_clicked from "@icons/plus_clicked.png";
 import plus_default from "@icons/plus_default.png";
 
 export default function DetailNav(props) {
-  // let index = props.index
-  // let magazine_id = props.id
-  const {index,magazine_id,path,path2} = props
-
-  console.log(index)
+  const {index,magazine_id,path,path2,isCheckedNormal,isCheckedPlus,parentCallbackNormal,parentCallbackPlus} = props
+  console.log("magazine_id:",magazine_id)
 
   useShareAppMessage(res => {
     if (res.from === 'button') {
@@ -44,12 +41,21 @@ export default function DetailNav(props) {
   };
 
   const gotoNormal = () => {
-    Taro.redirectTo({ url: `/pages/normal/normal?path=${path}`});
+    console.log(isCheckedNormal)
+    parentCallbackNormal("normal_clicked")
+
+    if(isCheckedNormal === 0){
+      Taro.redirectTo({ url: `/pages/normal/normal?path=${path}`});
+    }
   };
 
   const gotoPlus = () => {
-    Taro.redirectTo({ url: `/pages/plus/plus?path=${path2}`});
-  };
+    console.log(isCheckedPlus)
+    parentCallbackPlus("plus_clicked")
+    if(isCheckedPlus === 0){
+      Taro.redirectTo({ url: `/pages/plus/plus?path=${path2}`});
+    }
+  }
 
   return (
     <View className="flex items-center justify-center h-24 mx-auto w-50 opacity-80">
